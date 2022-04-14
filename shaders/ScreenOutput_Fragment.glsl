@@ -11,43 +11,41 @@ uniform float uFilterDecaySpeed;
 uniform bool uSceneIsDynamic;
 uniform bool uUseToneMapping;
 
+void main() {
 
-void main()
-{
-	
 	// 5x5 kernel
 	vec4 m25[25];
 
-	m25[ 0] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-2, 2)), 0);
-	m25[ 1] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-1, 2)), 0);
-	m25[ 2] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 0, 2)), 0);
-	m25[ 3] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 1, 2)), 0);
-	m25[ 4] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 2, 2)), 0);
+	m25[0] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-2, 2)), 0);
+	m25[1] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-1, 2)), 0);
+	m25[2] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(0, 2)), 0);
+	m25[3] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(1, 2)), 0);
+	m25[4] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(2, 2)), 0);
 
-	m25[ 5] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-2, 1)), 0);
-	m25[ 6] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-1, 1)), 0);
-	m25[ 7] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 0, 1)), 0);
-	m25[ 8] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 1, 1)), 0);
-	m25[ 9] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 2, 1)), 0);
+	m25[5] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-2, 1)), 0);
+	m25[6] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-1, 1)), 0);
+	m25[7] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(0, 1)), 0);
+	m25[8] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(1, 1)), 0);
+	m25[9] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(2, 1)), 0);
 
 	m25[10] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-2, 0)), 0);
 	m25[11] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-1, 0)), 0);
-	m25[12] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 0, 0)), 0);
-	m25[13] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 1, 0)), 0);
-	m25[14] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 2, 0)), 0);
+	m25[12] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(0, 0)), 0);
+	m25[13] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(1, 0)), 0);
+	m25[14] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(2, 0)), 0);
 
-	m25[15] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-2,-1)), 0);
-	m25[16] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-1,-1)), 0);
-	m25[17] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 0,-1)), 0);
-	m25[18] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 1,-1)), 0);
-	m25[19] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 2,-1)), 0);
+	m25[15] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-2, -1)), 0);
+	m25[16] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-1, -1)), 0);
+	m25[17] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(0, -1)), 0);
+	m25[18] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(1, -1)), 0);
+	m25[19] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(2, -1)), 0);
 
-	m25[20] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-2,-2)), 0);
-	m25[21] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-1,-2)), 0);
-	m25[22] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 0,-2)), 0);
-	m25[23] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 1,-2)), 0);
-	m25[24] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2( 2,-2)), 0);
-	
+	m25[20] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-2, -2)), 0);
+	m25[21] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(-1, -2)), 0);
+	m25[22] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(0, -2)), 0);
+	m25[23] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(1, -2)), 0);
+	m25[24] = texelFetch(tPathTracedImageTexture, ivec2(gl_FragCoord.xy + vec2(2, -2)), 0);
+
 	vec4 centerPixel = m25[12];
 	vec3 filteredPixelColor;
 	float threshold = 1.0;
@@ -56,137 +54,112 @@ void main()
 	// start with center pixel
 	filteredPixelColor = m25[12].rgb;
 	// search left
-	if (m25[11].a < threshold)
-	{
+	if(m25[11].a < threshold) {
 		filteredPixelColor += m25[11].rgb;
-		count++; 
-		if (m25[10].a < threshold)
-		{
+		count++;
+		if(m25[10].a < threshold) {
 			filteredPixelColor += m25[10].rgb;
-			count++; 
+			count++;
 		}
-		if (m25[5].a < threshold)
-		{
+		if(m25[5].a < threshold) {
 			filteredPixelColor += m25[5].rgb;
-			count++; 
+			count++;
 		}
 	}
 	// search right
-	if (m25[13].a < threshold)
-	{
+	if(m25[13].a < threshold) {
 		filteredPixelColor += m25[13].rgb;
-		count++; 
-		if (m25[14].a < threshold)
-		{
+		count++;
+		if(m25[14].a < threshold) {
 			filteredPixelColor += m25[14].rgb;
-			count++; 
+			count++;
 		}
-		if (m25[19].a < threshold)
-		{
+		if(m25[19].a < threshold) {
 			filteredPixelColor += m25[19].rgb;
-			count++; 
+			count++;
 		}
 	}
 	// search above
-	if (m25[7].a < threshold)
-	{
+	if(m25[7].a < threshold) {
 		filteredPixelColor += m25[7].rgb;
-		count++; 
-		if (m25[2].a < threshold)
-		{
+		count++;
+		if(m25[2].a < threshold) {
 			filteredPixelColor += m25[2].rgb;
-			count++; 
+			count++;
 		}
-		if (m25[3].a < threshold)
-		{
+		if(m25[3].a < threshold) {
 			filteredPixelColor += m25[3].rgb;
-			count++; 
+			count++;
 		}
 	}
 	// search below
-	if (m25[17].a < threshold)
-	{
+	if(m25[17].a < threshold) {
 		filteredPixelColor += m25[17].rgb;
-		count++; 
-		if (m25[22].a < threshold)
-		{
+		count++;
+		if(m25[22].a < threshold) {
 			filteredPixelColor += m25[22].rgb;
-			count++; 
+			count++;
 		}
-		if (m25[21].a < threshold)
-		{
+		if(m25[21].a < threshold) {
 			filteredPixelColor += m25[21].rgb;
-			count++; 
+			count++;
 		}
 	}
 
 	// search upper-left
-	if (m25[6].a < threshold)
-	{
+	if(m25[6].a < threshold) {
 		filteredPixelColor += m25[6].rgb;
-		count++; 
-		if (m25[0].a < threshold)
-		{
+		count++;
+		if(m25[0].a < threshold) {
 			filteredPixelColor += m25[0].rgb;
-			count++; 
+			count++;
 		}
-		if (m25[1].a < threshold)
-		{
+		if(m25[1].a < threshold) {
 			filteredPixelColor += m25[1].rgb;
-			count++; 
+			count++;
 		}
 	}
 	// search upper-right
-	if (m25[8].a < threshold)
-	{
+	if(m25[8].a < threshold) {
 		filteredPixelColor += m25[8].rgb;
-		count++; 
-		if (m25[4].a < threshold)
-		{
+		count++;
+		if(m25[4].a < threshold) {
 			filteredPixelColor += m25[4].rgb;
-			count++; 
+			count++;
 		}
-		if (m25[9].a < threshold)
-		{
+		if(m25[9].a < threshold) {
 			filteredPixelColor += m25[9].rgb;
-			count++; 
+			count++;
 		}
 	}
 	// search lower-left
-	if (m25[16].a < threshold)
-	{
+	if(m25[16].a < threshold) {
 		filteredPixelColor += m25[16].rgb;
-		count++; 
-		if (m25[15].a < threshold)
-		{
+		count++;
+		if(m25[15].a < threshold) {
 			filteredPixelColor += m25[15].rgb;
-			count++; 
+			count++;
 		}
-		if (m25[20].a < threshold)
-		{
+		if(m25[20].a < threshold) {
 			filteredPixelColor += m25[20].rgb;
-			count++; 
+			count++;
 		}
 	}
 	// search lower-right
-	if (m25[18].a < threshold)
-	{
+	if(m25[18].a < threshold) {
 		filteredPixelColor += m25[18].rgb;
-		count++; 
-		if (m25[23].a < threshold)
-		{
+		count++;
+		if(m25[23].a < threshold) {
 			filteredPixelColor += m25[23].rgb;
-			count++; 
+			count++;
 		}
-		if (m25[24].a < threshold)
-		{
+		if(m25[24].a < threshold) {
 			filteredPixelColor += m25[24].rgb;
-			count++; 
+			count++;
 		}
 	}
-	
-	filteredPixelColor /= float(count);
 
+	filteredPixelColor /= float(count);
 
 	// 3x3 kernel
 	vec4 m9[9];
@@ -202,8 +175,7 @@ void main()
 	m9[7] = m25[17];
 	m9[8] = m25[18];
 
-	if (centerPixel.a == -1.0)
-	{
+	if(centerPixel.a == -1.0) {
 		// reset variables
 		centerPixel = m9[4];
 		count = 1;
@@ -212,95 +184,86 @@ void main()
 		filteredPixelColor = m9[4].rgb;
 
 		// search left
-		if (m9[3].a < threshold)
-		{
+		if(m9[3].a < threshold) {
 			filteredPixelColor += m9[3].rgb;
-			count++; 
+			count++;
 		}
 		// search right
-		if (m9[5].a < threshold)
-		{
+		if(m9[5].a < threshold) {
 			filteredPixelColor += m9[5].rgb;
-			count++; 
+			count++;
 		}
 		// search above
-		if (m9[1].a < threshold)
-		{
+		if(m9[1].a < threshold) {
 			filteredPixelColor += m9[1].rgb;
-			count++; 
+			count++;
 		}
 		// search below
-		if (m9[7].a < threshold)
-		{
+		if(m9[7].a < threshold) {
 			filteredPixelColor += m9[7].rgb;
-			count++; 
+			count++;
 		}
 
 		// search upper-left
-		if (m9[0].a < threshold)
-		{
+		if(m9[0].a < threshold) {
 			filteredPixelColor += m9[0].rgb;
-			count++; 
+			count++;
 		}
 		// search upper-right
-		if (m9[2].a < threshold)
-		{
+		if(m9[2].a < threshold) {
 			filteredPixelColor += m9[2].rgb;
-			count++; 
+			count++;
 		}
 		// search lower-left
-		if (m9[6].a < threshold)
-		{
+		if(m9[6].a < threshold) {
 			filteredPixelColor += m9[6].rgb;
-			count++; 
+			count++;
 		}
 		// search lower-right
-		if (m9[8].a < threshold)
-		{
+		if(m9[8].a < threshold) {
 			filteredPixelColor += m9[8].rgb;
-			count++; 
+			count++;
 		}
 
 		filteredPixelColor /= float(count);
 
 	} // end if (centerPixel.a == -1.0)
 
-	
-	if ( !uSceneIsDynamic ) // static scene
+	if(!uSceneIsDynamic) // static scene
 	{
 		// fast progressive convergence from filtered (blurred) pixels to their original sharp center pixel colors  
-		if (uSampleCounter > 1.0) // is camera still?
+		if(uSampleCounter > 1.0) // is camera still?
 		{
-			if (centerPixel.a == 1.01) // 1.01 means pixel is on an edge, must get sharper quickest
+			if(centerPixel.a == 1.01) // 1.01 means pixel is on an edge, must get sharper quickest
 				filteredPixelColor = mix(filteredPixelColor, centerPixel.rgb, clamp(uSampleCounter * uEdgeSharpenSpeed, 0.0, 1.0));
-			else if (centerPixel.a == -1.0) // -1.0 means glass / transparent surfaces, must get sharper fairly quickly
+			else if(centerPixel.a == -1.0) // -1.0 means glass / transparent surfaces, must get sharper fairly quickly
 				filteredPixelColor = mix(filteredPixelColor, centerPixel.rgb, clamp(uSampleCounter * 0.01, 0.0, 1.0));
 			else // else this is a diffuse surface, so we can take our time converging. That way, there will be minimal noise 
 				filteredPixelColor = mix(filteredPixelColor, centerPixel.rgb, clamp(uSampleCounter * uFilterDecaySpeed, 0.0, 1.0));
 		} // else camera is moving
-		else if (centerPixel.a == 1.01) // 1.01 means pixel is on an edge, must remain sharper
+		else if(centerPixel.a == 1.01) // 1.01 means pixel is on an edge, must remain sharper
 		{
 			filteredPixelColor = mix(filteredPixelColor, centerPixel.rgb, 0.5);
 		}
-	}
-	else // scene is dynamic
+	} else // scene is dynamic
 	{
-		if (centerPixel.a == 1.01) // 1.01 means pixel is on an edge, must remain sharper
+		if(centerPixel.a == 1.01) // 1.01 means pixel is on an edge, must remain sharper
 		{
 			filteredPixelColor = mix(filteredPixelColor, centerPixel.rgb, uPixelEdgeSharpness);
 		}
 	}
-	
+
 	// final filteredPixelColor processing ////////////////////////////////////
 
 	// average accumulation buffer
 	filteredPixelColor *= uOneOverSampleCounter;
 
 	// apply tone mapping (brings pixel into 0.0-1.0 rgb color range)
-	filteredPixelColor = uUseToneMapping ? ReinhardToneMapping(filteredPixelColor) : filteredPixelColor;
-	//filteredPixelColor = OptimizedCineonToneMapping(filteredPixelColor);
-	//filteredPixelColor = ACESFilmicToneMapping(filteredPixelColor);
+	// filteredPixelColor = uUseToneMapping ? ReinhardToneMapping(filteredPixelColor) : filteredPixelColor;
+	// filteredPixelColor = OptimizedCineonToneMapping(filteredPixelColor);
+	// filteredPixelColor = LinearToneMapping(filteredPixelColor);
+	filteredPixelColor = ACESFilmicToneMapping(filteredPixelColor);
 
 	// lastly, apply gamma correction (gives more intensity/brightness range where it's needed)
-	pc_fragColor = clamp(vec4( pow(filteredPixelColor, vec3(0.4545)), 1.0 ), 0.0, 1.0);
+	pc_fragColor = clamp(vec4(pow(filteredPixelColor, vec3(0.4545)), 1.0), 0.0, 1.0);
 }

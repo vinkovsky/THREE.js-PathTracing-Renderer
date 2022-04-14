@@ -1,5 +1,14 @@
+<<<<<<< Updated upstream
 THREE.ShaderChunk[ 'pathtracing_uniforms_and_defines' ] = `
 uniform bool uCameraIsMoving;
+=======
+THREE.ShaderChunk["pathtracing_uniforms_and_defines"] = `
+uniform sampler2D tPreviousTexture;
+uniform sampler2D tBlueNoiseTexture;
+uniform mat4 uCameraMatrix;
+uniform vec2 uResolution;
+uniform vec2 uRandomVec2;
+>>>>>>> Stashed changes
 uniform float uEPS_intersect;
 uniform float uTime;
 uniform float uSampleCounter;
@@ -48,7 +57,7 @@ in vec2 vUv;
 #define METALCOAT 18
 `;
 
-THREE.ShaderChunk[ 'pathtracing_skymodel_defines' ] = `
+THREE.ShaderChunk["pathtracing_skymodel_defines"] = `
 #define TURBIDITY 1.0
 #define RAYLEIGH_COEFFICIENT 3.0
 #define MIE_COEFFICIENT 0.03
@@ -75,8 +84,7 @@ THREE.ShaderChunk[ 'pathtracing_skymodel_defines' ] = `
 #define STEEPNESS 1.5
 `;
 
-
-THREE.ShaderChunk[ 'pathtracing_plane_intersect' ] = `
+THREE.ShaderChunk["pathtracing_plane_intersect"] = `
 //-----------------------------------------------------------------------
 float PlaneIntersect( vec4 pla, vec3 rayOrigin, vec3 rayDirection )
 //-----------------------------------------------------------------------
@@ -90,7 +98,7 @@ float PlaneIntersect( vec4 pla, vec3 rayOrigin, vec3 rayDirection )
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_single_sided_plane_intersect' ] = `
+THREE.ShaderChunk["pathtracing_single_sided_plane_intersect"] = `
 //----------------------------------------------------------------------------
 float SingleSidedPlaneIntersect( vec4 pla, vec3 rayOrigin, vec3 rayDirection )
 //----------------------------------------------------------------------------
@@ -105,7 +113,7 @@ float SingleSidedPlaneIntersect( vec4 pla, vec3 rayOrigin, vec3 rayDirection )
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_disk_intersect' ] = `
+THREE.ShaderChunk["pathtracing_disk_intersect"] = `
 //-------------------------------------------------------------------------------------------
 float DiskIntersect( float radius, vec3 pos, vec3 normal, vec3 rayOrigin, vec3 rayDirection )
 //-------------------------------------------------------------------------------------------
@@ -128,7 +136,7 @@ float DiskIntersect( float radius, vec3 pos, vec3 normal, vec3 rayOrigin, vec3 r
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_rectangle_intersect' ] = `
+THREE.ShaderChunk["pathtracing_rectangle_intersect"] = `
 //----------------------------------------------------------------------------------------------------------------
 float RectangleIntersect( vec3 pos, vec3 normal, float radiusU, float radiusV, vec3 rayOrigin, vec3 rayDirection )
 //----------------------------------------------------------------------------------------------------------------
@@ -147,7 +155,7 @@ float RectangleIntersect( vec3 pos, vec3 normal, float radiusU, float radiusV, v
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_slab_intersect' ] = `
+THREE.ShaderChunk["pathtracing_slab_intersect"] = `
 //---------------------------------------------------------------------------------------------
 float SlabIntersect( float radius, vec3 normal, vec3 rayOrigin, vec3 rayDirection, out vec3 n )
 //---------------------------------------------------------------------------------------------
@@ -161,7 +169,7 @@ float SlabIntersect( float radius, vec3 normal, vec3 rayOrigin, vec3 rayDirectio
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_sphere_intersect' ] = `
+THREE.ShaderChunk["pathtracing_sphere_intersect"] = `
 /* bool solveQuadratic(float A, float B, float C, out float t0, out float t1)
 {
 	float discrim = B * B - 4.0 * A * C;
@@ -208,7 +216,70 @@ float SphereIntersect( float rad, vec3 pos, vec3 rayOrigin, vec3 rayDirection )
 }
 `;
 
+<<<<<<< Updated upstream
 THREE.ShaderChunk[ 'pathtracing_sphere_csg_intersect' ] = `
+=======
+/* THREE.ShaderChunk[ 'pathtracing_quadric_intersect' ] = `
+const mat4 cylinder = mat4(
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, -0.25
+);
+
+const mat4 sphere = mat4(
+    4, 0, 0, 0,
+    0, 4, 0, 0,
+    0, 0, 4, 0,
+    0, 0, 0, -1
+);
+
+const mat4 ellipticParaboloid = mat4(
+    4, 0, 0, 0,
+    0, 4, 0, 0,
+    0, 0, 0, 1,
+    0, 0, 1, 0
+);
+
+const mat4 hyperbolicParaboloid = mat4(
+    4, 0, 0, 0,
+    0, -4, 0, 0,
+    0, 0, 0, 1,
+    0, 0, 1, 0
+);
+
+const mat4 circularCone = mat4(
+    4, 0, 0, 0,
+    0, -4, 0, 0,
+    0, 0, 4, 0,
+    0, 0, 0, 0
+);
+
+const mat4 quadraticPlane = mat4(
+    1, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 1, 0,
+    0, 1, 0, 0
+);
+
+const mat4 hyperbolicPlane = mat4(
+    1, 0, 0, 0,
+    0, 0, 0, 2,
+    0, 0, 0, 0,
+    0, 2, 0, 0
+);
+
+const mat4 intersectingPlanes = mat4(
+    0, 1, 0, 0,
+    1, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0
+);
+
+`; */
+
+THREE.ShaderChunk["pathtracing_sphere_csg_intersect"] = `
+>>>>>>> Stashed changes
 //------------------------------------------------------------------------------------------------------------
 void Sphere_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -227,7 +298,7 @@ void Sphere_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out vec
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_cylinder_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_cylinder_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void Cylinder_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -279,7 +350,7 @@ void Cylinder_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out v
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_cone_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_cone_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void Cone_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -351,7 +422,7 @@ void Cone_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t1, 
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_conicalprism_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_conicalprism_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void ConicalPrism_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -461,7 +532,7 @@ void ConicalPrism_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out fl
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_paraboloid_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_paraboloid_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void Paraboloid_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -514,7 +585,7 @@ void Paraboloid_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_parabolicprism_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_parabolicprism_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void ParabolicPrism_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -600,7 +671,7 @@ void ParabolicPrism_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1,
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_hyperboloid1sheet_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_hyperboloid1sheet_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void Hyperboloid1Sheet_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -671,7 +742,7 @@ void Hyperboloid1Sheet_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, o
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_hyperboloid2sheets_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_hyperboloid2sheets_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void Hyperboloid2Sheets_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -727,7 +798,7 @@ void Hyperboloid2Sheets_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, 
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_hyperbolicprism1sheet_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_hyperbolicprism1sheet_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void HyperbolicPrism1Sheet_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -838,8 +909,7 @@ void HyperbolicPrism1Sheet_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t
 }
 `;
 
-
-THREE.ShaderChunk[ 'pathtracing_hyperbolicprism2sheets_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_hyperbolicprism2sheets_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void HyperbolicPrism2Sheets_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -931,7 +1001,7 @@ void HyperbolicPrism2Sheets_CSG_Intersect( float k, vec3 ro, vec3 rd, out float 
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_capsule_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_capsule_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void Capsule_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -1001,7 +1071,7 @@ void Capsule_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_box_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_box_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void Box_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -1137,7 +1207,7 @@ void ConvexPolyhedron_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t
 }
 `; */
 
-THREE.ShaderChunk[ 'pathtracing_pyramidfrustum_csg_intersect' ] = `
+THREE.ShaderChunk["pathtracing_pyramidfrustum_csg_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 void PyramidFrustum_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
@@ -1281,7 +1351,7 @@ void PyramidFrustum_CSG_Intersect( float k, vec3 ro, vec3 rd, out float t0, out 
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_csg_operations' ] = `
+THREE.ShaderChunk["pathtracing_csg_operations"] = `
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void CSG_Union_Operation( float A_t0, vec3 A_n0, int A_type0, vec3 A_color0, int A_objectID0, float A_t1, vec3 A_n1, int A_type1, vec3 A_color1, int A_objectID1, 
 			  float B_t0, vec3 B_n0, int B_type0, vec3 B_color0, int B_objectID0, float B_t1, vec3 B_n1, int B_type1, vec3 B_color1, int B_objectID1, 
@@ -1522,7 +1592,7 @@ void CSG_Intersection_Operation( float A_t0, vec3 A_n0, int A_type0, vec3 A_colo
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_ellipsoid_param_intersect' ] = `
+THREE.ShaderChunk["pathtracing_ellipsoid_param_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 float EllipsoidParamIntersect( float yMinPercent, float yMaxPercent, float phiMaxRadians, vec3 ro, vec3 rd, out vec3 n )
 //------------------------------------------------------------------------------------------------------------
@@ -1554,7 +1624,7 @@ float EllipsoidParamIntersect( float yMinPercent, float yMaxPercent, float phiMa
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_cylinder_param_intersect' ] = `
+THREE.ShaderChunk["pathtracing_cylinder_param_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 float CylinderParamIntersect( float yMinPercent, float yMaxPercent, float phiMaxRadians, vec3 ro, vec3 rd, out vec3 n )
 //------------------------------------------------------------------------------------------------------------
@@ -1588,7 +1658,7 @@ float CylinderParamIntersect( float yMinPercent, float yMaxPercent, float phiMax
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_cone_param_intersect' ] = `
+THREE.ShaderChunk["pathtracing_cone_param_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 float ConeParamIntersect( float yMinPercent, float yMaxPercent, float phiMaxRadians, vec3 ro, vec3 rd, out vec3 n )
 //------------------------------------------------------------------------------------------------------------
@@ -1623,7 +1693,7 @@ float ConeParamIntersect( float yMinPercent, float yMaxPercent, float phiMaxRadi
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_paraboloid_param_intersect' ] = `
+THREE.ShaderChunk["pathtracing_paraboloid_param_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 float ParaboloidParamIntersect( float yMinPercent, float yMaxPercent, float phiMaxRadians, vec3 ro, vec3 rd, out vec3 n )
 //------------------------------------------------------------------------------------------------------------
@@ -1663,7 +1733,7 @@ float ParaboloidParamIntersect( float yMinPercent, float yMaxPercent, float phiM
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_hyperboloid_param_intersect' ] = `
+THREE.ShaderChunk["pathtracing_hyperboloid_param_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 float HyperboloidParamIntersect( float k, float yMinPercent, float yMaxPercent, float phiMaxRadians, vec3 ro, vec3 rd, out vec3 n )
 //------------------------------------------------------------------------------------------------------------
@@ -1703,7 +1773,7 @@ float HyperboloidParamIntersect( float k, float yMinPercent, float yMaxPercent, 
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_hyperbolic_paraboloid_param_intersect' ] = `
+THREE.ShaderChunk["pathtracing_hyperbolic_paraboloid_param_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 float HyperbolicParaboloidParamIntersect( float yMinPercent, float yMaxPercent, float phiMaxRadians, vec3 ro, vec3 rd, out vec3 n )
 //------------------------------------------------------------------------------------------------------------
@@ -1736,7 +1806,7 @@ float HyperbolicParaboloidParamIntersect( float yMinPercent, float yMaxPercent, 
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_ellipsoid_intersect' ] = `
+THREE.ShaderChunk["pathtracing_ellipsoid_intersect"] = `
 //---------------------------------------------------------------------------------
 float EllipsoidIntersect( vec3 radii, vec3 pos, vec3 rayOrigin, vec3 rayDirection )
 //---------------------------------------------------------------------------------
@@ -1759,7 +1829,7 @@ float EllipsoidIntersect( vec3 radii, vec3 pos, vec3 rayOrigin, vec3 rayDirectio
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_opencylinder_intersect' ] = `
+THREE.ShaderChunk["pathtracing_opencylinder_intersect"] = `
 //-------------------------------------------------------------------------------------------------------
 float OpenCylinderIntersect( vec3 p0, vec3 p1, float rad, vec3 rayOrigin, vec3 rayDirection, out vec3 n )
 //-------------------------------------------------------------------------------------------------------
@@ -1819,7 +1889,7 @@ float OpenCylinderIntersect( vec3 p0, vec3 p1, float rad, vec3 rayOrigin, vec3 r
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_cappedcylinder_intersect' ] = `
+THREE.ShaderChunk["pathtracing_cappedcylinder_intersect"] = `
 //---------------------------------------------------------------------------------------------------------
 float CappedCylinderIntersect( vec3 p0, vec3 p1, float rad, vec3 rayOrigin, vec3 rayDirection, out vec3 n )
 //---------------------------------------------------------------------------------------------------------
@@ -1916,7 +1986,7 @@ float CappedCylinderIntersect( vec3 p0, vec3 p1, float rad, vec3 rayOrigin, vec3
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_cone_intersect' ] = `
+THREE.ShaderChunk["pathtracing_cone_intersect"] = `
 //--------------------------------------------------------------------------------------------------------
 float ConeIntersect( vec3 p0, float r0, vec3 p1, float r1, vec3 rayOrigin, vec3 rayDirection, out vec3 n )
 //-------------------------------------------------------------------------------------------------------- 
@@ -2007,8 +2077,7 @@ float ConeIntersect( vec3 p0, float r0, vec3 p1, float r1, vec3 rayOrigin, vec3 
 }
 `;
 
-
-THREE.ShaderChunk[ 'pathtracing_capsule_intersect' ] = `
+THREE.ShaderChunk["pathtracing_capsule_intersect"] = `
 //-----------------------------------------------------------------------------------------------------------
 float CapsuleIntersect( vec3 p0, float r0, vec3 p1, float r1, vec3 rayOrigin, vec3 rayDirection, out vec3 n )
 //-----------------------------------------------------------------------------------------------------------
@@ -2057,7 +2126,7 @@ float CapsuleIntersect( vec3 p0, float r0, vec3 p1, float r1, vec3 rayOrigin, ve
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_paraboloid_intersect' ] = `
+THREE.ShaderChunk["pathtracing_paraboloid_intersect"] = `
 //-----------------------------------------------------------------------------------------------------------
 float ParaboloidIntersect( float rad, float height, vec3 pos, vec3 rayOrigin, vec3 rayDirection, out vec3 n )
 //-----------------------------------------------------------------------------------------------------------
@@ -2101,7 +2170,7 @@ float ParaboloidIntersect( float rad, float height, vec3 pos, vec3 rayOrigin, ve
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_hyperboloid_intersect' ] = `
+THREE.ShaderChunk["pathtracing_hyperboloid_intersect"] = `
 //------------------------------------------------------------------------------------------------------------
 float HyperboloidIntersect( float rad, float height, vec3 pos, vec3 rayOrigin, vec3 rayDirection, out vec3 n )
 //------------------------------------------------------------------------------------------------------------
@@ -2145,7 +2214,7 @@ float HyperboloidIntersect( float rad, float height, vec3 pos, vec3 rayOrigin, v
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_hyperbolic_paraboloid_intersect' ] = `
+THREE.ShaderChunk["pathtracing_hyperbolic_paraboloid_intersect"] = `
 //---------------------------------------------------------------------------------------------------------------------
 float HyperbolicParaboloidIntersect( float rad, float height, vec3 pos, vec3 rayOrigin, vec3 rayDirection, out vec3 n )
 //---------------------------------------------------------------------------------------------------------------------
@@ -2188,7 +2257,7 @@ float HyperbolicParaboloidIntersect( float rad, float height, vec3 pos, vec3 ray
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_torus_intersect' ] = `
+THREE.ShaderChunk["pathtracing_torus_intersect"] = `
 float map_Torus( in vec3 pos )
 {
 	return length( vec2(length(pos.xz)-torii[0].radius0,pos.y) )-torii[0].radius1;
@@ -2311,7 +2380,7 @@ float TorusIntersect( float rad0, float rad1, vec3 pos, vec3 rayOrigin, vec3 ray
 */
 `;
 
-THREE.ShaderChunk[ 'pathtracing_quad_intersect' ] = `
+THREE.ShaderChunk["pathtracing_quad_intersect"] = `
 float TriangleIntersect( vec3 v0, vec3 v1, vec3 v2, vec3 rayOrigin, vec3 rayDirection, bool isDoubleSided )
 {
 	vec3 edge1 = v1 - v0;
@@ -2336,7 +2405,7 @@ float QuadIntersect( vec3 v0, vec3 v1, vec3 v2, vec3 v3, vec3 rayOrigin, vec3 ra
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_box_intersect' ] = `
+THREE.ShaderChunk["pathtracing_box_intersect"] = `
 //-----------------------------------------------------------------------------------------------------------------------------
 float BoxIntersect( vec3 minCorner, vec3 maxCorner, vec3 rayOrigin, vec3 rayDirection, out vec3 normal, out bool isRayExiting )
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -2368,7 +2437,7 @@ float BoxIntersect( vec3 minCorner, vec3 maxCorner, vec3 rayOrigin, vec3 rayDire
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_boundingbox_intersect' ] = `
+THREE.ShaderChunk["pathtracing_boundingbox_intersect"] = `
 //--------------------------------------------------------------------------------------
 float BoundingBoxIntersect( vec3 minCorner, vec3 maxCorner, vec3 rayOrigin, vec3 invDir )
 //--------------------------------------------------------------------------------------
@@ -2387,9 +2456,7 @@ float BoundingBoxIntersect( vec3 minCorner, vec3 maxCorner, vec3 rayOrigin, vec3
 }
 `;
 
-
-
-THREE.ShaderChunk[ 'pathtracing_bvhTriangle_intersect' ] = `
+THREE.ShaderChunk["pathtracing_bvhTriangle_intersect"] = `
 //-------------------------------------------------------------------------------------------------------------------
 float BVH_TriangleIntersect( vec3 v0, vec3 v1, vec3 v2, vec3 rayOrigin, vec3 rayDirection, out float u, out float v )
 //-------------------------------------------------------------------------------------------------------------------
@@ -2407,7 +2474,7 @@ float BVH_TriangleIntersect( vec3 v0, vec3 v1, vec3 v2, vec3 rayOrigin, vec3 ray
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_bvhDoubleSidedTriangle_intersect' ] = `
+THREE.ShaderChunk["pathtracing_bvhDoubleSidedTriangle_intersect"] = `
 //------------------------------------------------------------------------------------------------------------------------------
 float BVH_DoubleSidedTriangleIntersect( vec3 v0, vec3 v1, vec3 v2, vec3 rayOrigin, vec3 rayDirection, out float u, out float v )
 //------------------------------------------------------------------------------------------------------------------------------
@@ -2425,7 +2492,7 @@ float BVH_DoubleSidedTriangleIntersect( vec3 v0, vec3 v1, vec3 v2, vec3 rayOrigi
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_physical_sky_functions' ] = `
+THREE.ShaderChunk["pathtracing_physical_sky_functions"] = `
 float RayleighPhase(float cosTheta)
 {
 	return THREE_OVER_SIXTEENPI * (1.0 + (cosTheta * cosTheta));
@@ -2498,7 +2565,7 @@ vec3 Get_Sky_Color(vec3 rayDir)
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_random_functions' ] = `
+THREE.ShaderChunk["pathtracing_random_functions"] = `
 // globals used in rand() function
 vec4 randVec4; // samples and holds the RGBA blueNoise texture value for this pixel
 float randNumber; // the final randomly generated number (range: 0.0 to 1.0)
@@ -2634,8 +2701,7 @@ vec3 randomDirectionInSpecularLobe(vec3 reflectionDir, float roughness)
 // }
 `;
 
-
-THREE.ShaderChunk[ 'pathtracing_sample_sphere_light' ] = `
+THREE.ShaderChunk["pathtracing_sample_sphere_light"] = `
 vec3 sampleSphereLight(vec3 x, vec3 nl, Sphere light, out float weight)
 {
 	vec3 dirToLight = (light.position - x); // no normalize (for distance calc below)
@@ -2657,7 +2723,7 @@ vec3 sampleSphereLight(vec3 x, vec3 nl, Sphere light, out float weight)
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_sample_quad_light' ] = `
+THREE.ShaderChunk["pathtracing_sample_quad_light"] = `
 vec3 sampleQuadLight(vec3 x, vec3 nl, Quad light, out float weight)
 {
 	vec3 randPointOnLight;
@@ -2676,7 +2742,7 @@ vec3 sampleQuadLight(vec3 x, vec3 nl, Quad light, out float weight)
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_calc_fresnel_reflectance' ] = `
+THREE.ShaderChunk["pathtracing_calc_fresnel_reflectance"] = `
 float calcFresnelReflectance(vec3 rayDirection, vec3 n, float etai, float etat, out float ratioIoR)
 {
 	float temp = etai;
@@ -2699,7 +2765,7 @@ float calcFresnelReflectance(vec3 rayDirection, vec3 n, float etai, float etat, 
 }
 `;
 
-THREE.ShaderChunk[ 'pathtracing_main' ] = `
+THREE.ShaderChunk["pathtracing_main"] = `
 // tentFilter from Peter Shirley's 'Realistic Ray Tracing (2nd Edition)' book, pg. 60
 float tentFilter(float x)
 {
