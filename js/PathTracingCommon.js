@@ -1,14 +1,5 @@
-<<<<<<< Updated upstream
-THREE.ShaderChunk[ 'pathtracing_uniforms_and_defines' ] = `
-uniform bool uCameraIsMoving;
-=======
 THREE.ShaderChunk["pathtracing_uniforms_and_defines"] = `
-uniform sampler2D tPreviousTexture;
-uniform sampler2D tBlueNoiseTexture;
-uniform mat4 uCameraMatrix;
-uniform vec2 uResolution;
-uniform vec2 uRandomVec2;
->>>>>>> Stashed changes
+uniform bool uCameraIsMoving; 
 uniform float uEPS_intersect;
 uniform float uTime;
 uniform float uSampleCounter;
@@ -216,70 +207,7 @@ float SphereIntersect( float rad, vec3 pos, vec3 rayOrigin, vec3 rayDirection )
 }
 `;
 
-<<<<<<< Updated upstream
-THREE.ShaderChunk[ 'pathtracing_sphere_csg_intersect' ] = `
-=======
-/* THREE.ShaderChunk[ 'pathtracing_quadric_intersect' ] = `
-const mat4 cylinder = mat4(
-    1, 0, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, -0.25
-);
-
-const mat4 sphere = mat4(
-    4, 0, 0, 0,
-    0, 4, 0, 0,
-    0, 0, 4, 0,
-    0, 0, 0, -1
-);
-
-const mat4 ellipticParaboloid = mat4(
-    4, 0, 0, 0,
-    0, 4, 0, 0,
-    0, 0, 0, 1,
-    0, 0, 1, 0
-);
-
-const mat4 hyperbolicParaboloid = mat4(
-    4, 0, 0, 0,
-    0, -4, 0, 0,
-    0, 0, 0, 1,
-    0, 0, 1, 0
-);
-
-const mat4 circularCone = mat4(
-    4, 0, 0, 0,
-    0, -4, 0, 0,
-    0, 0, 4, 0,
-    0, 0, 0, 0
-);
-
-const mat4 quadraticPlane = mat4(
-    1, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 1, 0,
-    0, 1, 0, 0
-);
-
-const mat4 hyperbolicPlane = mat4(
-    1, 0, 0, 0,
-    0, 0, 0, 2,
-    0, 0, 0, 0,
-    0, 2, 0, 0
-);
-
-const mat4 intersectingPlanes = mat4(
-    0, 1, 0, 0,
-    1, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0
-);
-
-`; */
-
 THREE.ShaderChunk["pathtracing_sphere_csg_intersect"] = `
->>>>>>> Stashed changes
 //------------------------------------------------------------------------------------------------------------
 void Sphere_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------

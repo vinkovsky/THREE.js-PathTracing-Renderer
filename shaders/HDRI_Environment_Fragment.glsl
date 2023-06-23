@@ -36,13 +36,10 @@ vec3 rayOrigin, rayDirection;
 // recorded intersection data:
 // vec3 hitNormal, hitEmission, hitColor;
 vec2 hitUV;
-<<<<<<< Updated upstream
+
 int hitType;
 float hitObjectID;
-=======
-// int hitType;
-// float hitObjectID;
->>>>>>> Stashed changes
+
 bool hitIsModel;
 
 struct Rectangle {
@@ -105,7 +102,7 @@ vec3 randPointOnRectangle;
 //----------------------------------------------------------------------------------------------------------------
 float RectangleIntersect(vec3 pos, vec3 normal, float radiusU, float radiusV, vec3 rayOrigin, vec3 rayDirection)
 //----------------------------------------------------------------------------------------------------------------
-	{
+{
 	float dt = dot(-normal, rayDirection);
 	// use the following for one-sided rectangle
 	//if (dt < 0.0) return INFINITY;
@@ -192,7 +189,7 @@ void sampleEquiAngular(float u, float maxDistance, vec3 rOrigin, vec3 rDirection
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 float SceneIntersect(vec3 rOrigin, vec3 rDirection, out vec3 hitNormal, out vec3 hitEmission, out vec3 hitColor, out float hitObjectID, out int hitType)
 //-----------------------------------------------------------------------------------------------------------------------------------------------
-	{
+{
 	vec4 currentBoxNodeData0, nodeAData0, nodeBData0, tmpNodeData0;
 	vec4 currentBoxNodeData1, nodeAData1, nodeBData1, tmpNodeData1;
 
@@ -400,7 +397,7 @@ vec3 Get_HDR_Color(vec3 rDirection) {
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 vec3 CalculateRadiance(out vec3 objectNormal, out vec3 objectColor, out float objectID, out float pixelSharpness)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-	{
+{
 	vec3 cameraRayOrigin = rayOrigin;
 	vec3 cameraRayDirection = rayDirection;
 	vec3 vRayOrigin, vRayDirection;
@@ -732,7 +729,7 @@ vec3 CalculateRadiance(out vec3 objectNormal, out vec3 objectColor, out float ob
 //-----------------------------------------------------------------------
 void SetupScene(void)
 //-----------------------------------------------------------------------
-	{
+{
 	vec3 z = vec3(0);
 	vec3 L1 = vec3(1.0, 1.0, 10.0) * 10.0;// Blueish light 
 	vec3 L2 = vec3(10.0, 1.0, 10.0) * 10.0;// Pinkish light 
