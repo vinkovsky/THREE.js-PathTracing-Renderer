@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 THREE.ShaderChunk[ 'pathtracing_uniforms_and_defines' ] = `
 uniform bool uCameraIsMoving;
 =======
