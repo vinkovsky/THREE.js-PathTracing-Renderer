@@ -2,7 +2,6 @@
 Real-time PathTracing with global illumination and progressive rendering, all on top of the Three.js WebGL framework.
 
 <h2>LIVE DEMOS</h2>
-
 * [Geometry Showcase Demo](https://erichlof.github.io/THREE.js-PathTracing-Renderer/Geometry_Showcase.html) demonstrating some primitive shapes for ray tracing.  
 
 * [Ocean and Sky Demo](https://erichlof.github.io/THREE.js-PathTracing-Renderer/Ocean_And_Sky_Rendering.html) mixes ray tracing with ray marching and models an enormous calm ocean underneath a realistic physical sky. Now has more photo-realistic procedural clouds!
