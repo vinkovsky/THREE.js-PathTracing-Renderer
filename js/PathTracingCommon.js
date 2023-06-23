@@ -1,14 +1,9 @@
-
-THREE.ShaderChunk[ 'pathtracing_uniforms_and_defines' ] = `
-uniform bool uCameraIsMoving;
-=======
 THREE.ShaderChunk["pathtracing_uniforms_and_defines"] = `
 uniform sampler2D tPreviousTexture;
 uniform sampler2D tBlueNoiseTexture;
 uniform mat4 uCameraMatrix;
 uniform vec2 uResolution;
 uniform vec2 uRandomVec2;
->>>>>>> Stashed changes
 uniform float uEPS_intersect;
 uniform float uTime;
 uniform float uSampleCounter;
@@ -214,11 +209,8 @@ float SphereIntersect( float rad, vec3 pos, vec3 rayOrigin, vec3 rayDirection )
 	solveQuadratic(a, b, c, t0, t1);
 	return t0 > 0.0 ? t0 : t1 > 0.0 ? t1 : INFINITY;
 }
-`;
+`; 
 
-<<<<<<< Updated upstream
-THREE.ShaderChunk[ 'pathtracing_sphere_csg_intersect' ] = `
-=======
 /* THREE.ShaderChunk[ 'pathtracing_quadric_intersect' ] = `
 const mat4 cylinder = mat4(
     1, 0, 0, 0,
@@ -279,7 +271,6 @@ const mat4 intersectingPlanes = mat4(
 `; */
 
 THREE.ShaderChunk["pathtracing_sphere_csg_intersect"] = `
->>>>>>> Stashed changes
 //------------------------------------------------------------------------------------------------------------
 void Sphere_CSG_Intersect( vec3 ro, vec3 rd, out float t0, out float t1, out vec3 n0, out vec3 n1 )
 //------------------------------------------------------------------------------------------------------------
